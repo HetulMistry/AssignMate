@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "assignmate"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "assignmate-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

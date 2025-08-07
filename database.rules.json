@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "assignments": {
+      ".indexOn": "deadline"
+    },
+    ".read": true,
+    ".write": true
+  }
+}
