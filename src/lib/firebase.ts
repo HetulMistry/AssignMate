@@ -1,4 +1,5 @@
-import { initializeApp, getApps } from "firebase/app";
+// File: src/lib/firebase.ts
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
@@ -11,10 +12,7 @@ const firebaseConfig = {
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
 };
 
-// Initialize Firebase
-const app =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
-const db = getDatabase(app);
-
-export { db };
+export const db = getDatabase(app);
+export { app };

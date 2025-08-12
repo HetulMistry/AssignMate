@@ -1,7 +1,7 @@
 // File: src/api/assignments/route.ts
 import { NextResponse } from "next/server";
 import { db } from "@/lib/firebase";
-import { ref, get, query, orderByChild } from "firebase/database";
+import { ref, get } from "firebase/database";
 
 interface Assignment {
   deadline: string;
@@ -14,9 +14,8 @@ interface Assignment {
 export async function GET() {
   try {
     const assignmentsRef = ref(db, "assignments");
-    const assignmentsQuery = query(assignmentsRef, orderByChild("deadline"));
-
-    const snapshot = await get(assignmentsQuery);
+    // Fetch without requiring an index; we'll sort in memory below
+    const snapshot = await get(assignmentsRef);
 
     if (snapshot.exists()) {
       const data = snapshot.val();
