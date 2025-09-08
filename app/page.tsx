@@ -72,9 +72,9 @@ const features = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-[#2196F3]/10 overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
       <motion.header
-        className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50 z-50"
+        className="fixed top-0 w-full bg-background dark:bg-background-dark backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50 z-50"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
@@ -97,12 +97,13 @@ export default function LandingPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/"
+                // Not able to use 'primary' color from tailwind config here for some reason
                 className="bg-[#2196F3] text-white px-4 py-2 rounded-full hover:shadow-xl transition-shadow inline-flex items-center"
               >
                 Get Started
               </Link>
             </motion.div>
-            <ThemeToggleButton variant="circle" start="top-right" />
+            <ThemeToggleButton variant="circle-blur" start="top-right" />
           </motion.div>
         </div>
       </motion.header>
@@ -164,6 +165,7 @@ export default function LandingPage() {
               className="mt-12 flex items-center justify-center space-x-8 text-sm text-slate-500 dark:text-slate-400"
             >
               <div className="flex items-center">
+                {/* Can't use 'secondary' color from tailwind config here for some reason */}
                 <CheckCircle className="w-5 h-5 text-[#FFEB3B] mr-2" />
                 No setup required
               </div>
@@ -201,7 +203,10 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      <section id="features" className="py-20 px-6 bg-white dark:bg-slate-900">
+      <section
+        id="features"
+        className="py-20 px-6 bg-background dark:bg-background-dark"
+      >
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -287,7 +292,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="py-12 px-6 bg-slate-900 text-white">
+      <footer className="py-12 px-6 bg-background dark:bg-background-dark text-white">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
