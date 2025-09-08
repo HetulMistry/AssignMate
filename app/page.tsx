@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ThemeToggleButton } from "@/components/ThemeToggleButton";
+import { ThemeToggleButton } from "@/components/ui/theme-toggle-button";
 import {
   Brain,
   CheckCircle,
@@ -92,7 +92,7 @@ export default function LandingPage() {
             />
           </motion.div>
 
-          <motion.div className="flex items-center space-x-4">
+          <motion.div className="flex items-center space-x-2">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/"

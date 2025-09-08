@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { GripHorizontal } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sun, Moon, GripHorizontal } from "lucide-react";
 import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useState } from "react";
 
@@ -458,7 +458,7 @@ export const useThemeToggle = ({
   blur?: boolean;
   gifUrl?: string;
 } = {}) => {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   const [isDark, setIsDark] = useState(false);
 
@@ -489,8 +489,6 @@ export const useThemeToggle = ({
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setIsDark(!isDark);
-
     const animation = createAnimation(variant, start, blur, gifUrl);
 
     updateStyles(animation.css, animation.name);
@@ -498,7 +496,9 @@ export const useThemeToggle = ({
     if (typeof window === "undefined") return;
 
     const switchTheme = () => {
-      setTheme(theme === "light" ? "dark" : "light");
+      const newTheme = resolvedTheme === "dark" ? "light" : "dark";
+      setTheme(newTheme);
+      setIsDark(newTheme === "dark");
     };
 
     if (!document.startViewTransition) {
@@ -508,14 +508,13 @@ export const useThemeToggle = ({
 
     document.startViewTransition(switchTheme);
   }, [
-    theme,
+    resolvedTheme,
     setTheme,
     variant,
     start,
     blur,
     gifUrl,
     updateStyles,
-    isDark,
     setIsDark,
   ]);
 
@@ -596,34 +595,29 @@ export const ThemeToggleButton = ({
     <button
       type="button"
       className={cn(
-        "size-10 cursor-pointer rounded-full bg-black p-0 transition-all duration-300 active:scale-95",
+        "size-10 cursor-pointer rounded-full bg-white/80 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700/50 p-2 transition-all duration-300 active:scale-95 hover:bg-white dark:hover:bg-slate-800 shadow-lg hover:shadow-xl",
         className
       )}
       onClick={toggleTheme}
       aria-label="Toggle theme"
     >
       <span className="sr-only">Toggle theme</span>
-      <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <motion.g
-          animate={{ rotate: isDark ? -180 : 0 }}
-          transition={{ ease: "easeInOut", duration: 0.5 }}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={isDark ? "dark" : "light"}
+          initial={{ rotate: -90, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          exit={{ rotate: 90, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="flex items-center justify-center w-full h-full"
         >
-          <path
-            d="M120 67.5C149.25 67.5 172.5 90.75 172.5 120C172.5 149.25 149.25 172.5 120 172.5"
-            fill="white"
-          />
-          <path
-            d="M120 67.5C90.75 67.5 67.5 90.75 67.5 120C67.5 149.25 90.75 172.5 120 172.5"
-            fill="black"
-          />
-        </motion.g>
-        <motion.path
-          animate={{ rotate: isDark ? 180 : 0 }}
-          transition={{ ease: "easeInOut", duration: 0.5 }}
-          d="M120 3.75C55.5 3.75 3.75 55.5 3.75 120C3.75 184.5 55.5 236.25 120 236.25C184.5 236.25 236.25 184.5 236.25 120C236.25 55.5 184.5 3.75 120 3.75ZM120 214.5V172.5C90.75 172.5 67.5 149.25 67.5 120C67.5 90.75 90.75 67.5 120 67.5V25.5C172.5 25.5 214.5 67.5 214.5 120C214.5 172.5 172.5 214.5 120 214.5Z"
-          fill="white"
-        />
-      </svg>
+          {isDark ? (
+            <Sun className="w-5 h-5 text-yellow-500 hover:text-[#FFEB3B] transition-colors" />
+          ) : (
+            <Moon className="w-5 h-5 text-slate-600 hover:text-[#2196F3] transition-colors" />
+          )}
+        </motion.div>
+      </AnimatePresence>
     </button>
   );
 };
