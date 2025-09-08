@@ -323,8 +323,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-
-      <ThemeDebug />
     </div>
   );
 }
