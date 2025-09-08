@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import ThemeToggleButton from "@/components/ThemeToggleButton";
+import { ThemeToggleButton } from "@/components/ThemeToggleButton";
 import {
   Brain,
   CheckCircle,
@@ -101,8 +101,8 @@ export default function LandingPage() {
                 Get Started
               </Link>
             </motion.div>
+            <ThemeToggleButton variant="circle" start="top-right" />
           </motion.div>
-          <ThemeToggleButton variant="circle" start="top-right" />
         </div>
       </motion.header>
 
@@ -197,7 +197,7 @@ export default function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              Powerful Features for
+              Powerful Features for {""}
               <span className="bg-gradient-to-r from-[#2196F3] to-[#FFB74D] bg-clip-text text-transparent">
                 Academic Success
               </span>
@@ -214,14 +214,13 @@ export default function LandingPage() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.1, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-                className="bg-slate-50 dark:bg-slate-800 p-8 rounded-2xl hover:shadow-xl transition-all duration-300"
+                whileHover={{ y: -10, transition: { duration: 0.1 } }}
+                className="bg-slate-50 dark:bg-slate-800 p-8 rounded-2xl hover:shadow-xl transition-all duration-500"
               >
                 <div className="w-14 h-14 bg-[#2196F3] rounded-xl flex items-center justify-center mb-6">
-                  {/* <div className="w-14 h-14 bg-gradient-to-r from-[#2196F3] to-[#FFB74D] rounded-xl flex items-center justify-center mb-6"> */}
-                  <feature.icon className="w-7 h-7 text-white" />
+                  <feature.icon className="w-7 h-7 text-[#FFEB3B]" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
                   {feature.title}

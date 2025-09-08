@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import ThemeToggleButton from "@/components/ui/theme-toggle-button";
+import { ThemeToggleButton } from "@/components/ThemeToggleButton";
 import { Home, Search, ArrowLeft, AlertCircle } from "lucide-react";
 
 const fadeInUp = {
