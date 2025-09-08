@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ThemeToggleButton } from "@/components/ui/theme-toggle-button";
+import { ThemeDebug } from "@/components/ui/theme-debug";
 import {
   Brain,
   CheckCircle,
@@ -71,7 +72,7 @@ const features = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-[#2196F3]/10">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-[#2196F3]/10 overflow-x-hidden">
       <motion.header
         className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50 z-50"
         initial={{ y: -100 }}
@@ -179,11 +180,24 @@ export default function LandingPage() {
         </div>
 
         <motion.div
-          className="flex justify-center mt-20"
+          className="flex justify-center mt-20 cursor-pointer"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => {
+            const featuresSection = document.getElementById("features");
+            if (featuresSection) {
+              const offset = 60;
+              const elementPosition = featuresSection.offsetTop - offset;
+              window.scrollTo({
+                top: elementPosition,
+                behavior: "smooth",
+              });
+            }
+          }}
         >
-          <ChevronDown className="w-6 h-6 text-slate-400" />
+          <ChevronDown className="w-6 h-6 text-slate-400 dark:text-slate-500" />
         </motion.div>
       </section>
 
@@ -250,14 +264,24 @@ export default function LandingPage() {
               their assignments, get instant feedback, and stay on top of
               deadlines.
             </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/"
-                className="bg-[#2196F3] px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:bg-gradient-to-r from-[#2196F3] to-[#FFB74D] transition-all duration-300 inline-flex items-center"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <motion.div
+                className="bg-[#2196F3] px-8 py-4 rounded-full text-lg font-semibold text-white inline-flex items-center cursor-pointer shadow-lg"
+                whileHover={{
+                  background: "linear-gradient(to right, #2196F3, #FFB74D)",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
               >
-                Start For Free
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+                <Link href="/" className="flex items-center">
+                  Start For Free
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
@@ -294,6 +318,8 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      <ThemeDebug />
     </div>
   );
 }

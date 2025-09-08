@@ -27,6 +27,11 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Brand Colors */
+    --brand-primary: 207 90% 54%; /* #2196F3 - Main Blue */
+    --brand-secondary: 36 95% 70%; /* #FFB74D - Orange */
+    --brand-accent: 54 91% 95%; /* #FFEB3B - Yellow */
   }
 
   .dark {
@@ -54,6 +59,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* Brand Colors - Dark Mode */
+    --brand-primary: 207 90% 54%; /* #2196F3 - Main Blue (same in dark) */
+    --brand-secondary: 36 95% 70%; /* #FFB74D - Orange (same in dark) */
+    --brand-accent: 54 91% 95%; /* #FFEB3B - Yellow (same in dark) */
   }
 }
 
@@ -96,6 +106,43 @@
 
 .border-primary {
   border-color: var(--primary);
+}
+
+/* Brand Color Utilities */
+.bg-brand-primary {
+  background-color: hsl(var(--brand-primary));
+}
+
+.bg-brand-secondary {
+  background-color: hsl(var(--brand-secondary));
+}
+
+.bg-brand-accent {
+  background-color: hsl(var(--brand-accent));
+}
+
+.text-brand-primary {
+  color: hsl(var(--brand-primary));
+}
+
+.text-brand-secondary {
+  color: hsl(var(--brand-secondary));
+}
+
+.text-brand-accent {
+  color: hsl(var(--brand-accent));
+}
+
+.border-brand-primary {
+  border-color: hsl(var(--brand-primary));
+}
+
+.border-brand-secondary {
+  border-color: hsl(var(--brand-secondary));
+}
+
+.border-brand-accent {
+  border-color: hsl(var(--brand-accent));
 }
 
 .border-secondary {
