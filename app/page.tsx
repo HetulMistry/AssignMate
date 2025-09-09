@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ThemeToggleButton } from "@/components/ui/theme-toggle-button";
-import { ThemeDebug } from "@/components/ui/theme-debug";
 import {
   Brain,
   CheckCircle,
@@ -107,7 +106,6 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </motion.header>
-
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto text-center">
           <motion.div
@@ -202,7 +200,6 @@ export default function LandingPage() {
           <ChevronDown className="w-6 h-6 text-slate-400 dark:text-slate-500" />
         </motion.div>
       </section>
-
       <section
         id="features"
         className="py-20 px-6 bg-background dark:bg-background-dark"
@@ -252,7 +249,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       <section className="py-20 px-6 bg-gradient-to-r from-[#2196F3] to-[#FFB74D]">
         <div className="container mx-auto text-center">
           <motion.div
@@ -291,7 +287,6 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
-
       <footer className="py-12 px-6 bg-background dark:bg-background-dark text-white">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between">
@@ -306,14 +301,17 @@ export default function LandingPage() {
             </div>
 
             <div className="flex items-center space-x-6 text-slate-400">
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link
+                href="/privacy"
+                className="hover:text-white transition-colors"
+              >
                 Privacy
               </Link>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link
+                href="/terms"
+                className="hover:text-white transition-colors"
+              >
                 Terms
-              </Link>
-              <Link href="/" className="hover:text-white transition-colors">
-                Contact
               </Link>
             </div>
           </div>
