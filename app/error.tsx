@@ -34,9 +34,9 @@ interface ErrorProps {
 
 export default function Error({ error, reset }: ErrorProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-red-50 dark:from-slate-950 dark:via-slate-900 dark:to-red-950/10">
+    <div className="min-h-screen bg-background">
       <motion.header
-        className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50 z-50"
+        className="fixed top-0 w-full bg-background dark:bg-background-dark backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50 z-50"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
@@ -67,7 +67,7 @@ export default function Error({ error, reset }: ErrorProps) {
                 Go Home
               </Link>
             </motion.div>
-            <ThemeToggleButton variant="circle" start="top-right" />
+            <ThemeToggleButton variant="circle-blur" start="top-right" />
           </motion.div>
         </div>
       </motion.header>
@@ -256,7 +256,7 @@ export default function Error({ error, reset }: ErrorProps) {
         </div>
       </section>
 
-      <footer className="py-12 px-6 bg-slate-900 text-white">
+      <footer className="py-12 px-6 bg-background dark:bg-background-dark text-white">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
